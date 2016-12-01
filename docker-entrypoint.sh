@@ -19,7 +19,7 @@ fi
 if [ -n "$REMOTE_URL" ]; then
     sed -i '$d' /etc/nginx/conf.d/wordpress.conf
     
-    echo 'location ^~ /uploads  {\nalias  http://${REMOTE_URL}/wp_content/uploads/;\n}\n}' >> /etc/nginx/conf.d/wordpress.conf
+    echo 'location ^~ /uploads  {alias  http://${REMOTE_URL}/wp_content/uploads/;}}' >> /etc/nginx/conf.d/wordpress.conf
 fi
 
 # Set server name
