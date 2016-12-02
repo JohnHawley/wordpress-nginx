@@ -2,6 +2,11 @@
 
 set -eo pipefail
 
+# Remote server location defined
+if [ -n "${NGINX_REMOTEHOST}" ]; then
+    sed -i 's~example.com~'"${NGINX_REMOTEHOST}"'~' /etc/nginx/conf.d/wordpress.conf
+fi
+
 # Set upstream name
 sed -i 's/UPSTREAM_NAME/'"${NGINX_UPSTREAM_NAME}"'/' /etc/nginx/nginx.conf
 
@@ -13,11 +18,6 @@ fi
 # Ensure server name defined.
 if [ -z "$NGINX_SERVER_NAME" ]; then
     NGINX_SERVER_NAME=localhost
-fi
-
-# Remote server location defined
-if [ -n "${NGINX_REMOTEHOST}" ]; then
-    sed -i 's~example.com~'"${NGINX_REMOTEHOST}"'~' /etc/nginx/conf.d/wordpress.conf
 fi
 
 # Set server name
