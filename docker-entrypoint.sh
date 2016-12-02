@@ -17,8 +17,7 @@ fi
 
 # Remote server location defined
 if [ -n "${NGINX_REMOTEHOST}" ]; then
-    sed -i '$d' /etc/nginx/conf.d/wordpress.conf    
-    echo 'location ^~ /uploads  {alias  http://'${NGINX_REMOTEHOST}'/wp_content/uploads/;}}' >> /etc/nginx/conf.d/wordpress.conf
+    sed -i 's/example.com/'"${NGINX_REMOTEHOST}"'/' /etc/nginx/conf.d/wordpress.conf
 fi
 
 # Set server name
