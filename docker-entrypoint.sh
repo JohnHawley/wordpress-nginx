@@ -17,7 +17,7 @@ fi
 
 # Remote server location defined
 if [ -n "${NGINX_REMOTEHOST}" ]; then
-    sed -i 's/example.com/'"${NGINX_REMOTEHOST}"'/' /etc/nginx/conf.d/wordpress.conf
+    sed -i 's~^proxy_pass http://example.com/$uri;.*~proxy_pass http://'"${NGINX_REMOTEHOST}"'/$uri;~' /etc/nginx/conf.d/wordpress.conf
 fi
 
 # Set server name
